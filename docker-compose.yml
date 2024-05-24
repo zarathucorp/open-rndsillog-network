@@ -1,0 +1,38 @@
+services:
+  nginx:
+    image: nginx:1.25.4
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/cert:/etc/nginx/cert
+    container_name: rndsillog_nginx
+    platform: "linux/amd64"
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    networks:
+      - front
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  backend:
+    build:
+      context: ../indulgentia-back/.
+    container_name: rndsillog_backend
+    volumes:
+      - ../indulgentia-back:/app
+    networks:
+      - front
+
+  # frontend:
+  #   build:
+  #     context: ../openstat-cloud-front/.
+
+networks:
+  front:
+    external: true
+
+volumes:
+  rndsillog-front:
+    external: true
