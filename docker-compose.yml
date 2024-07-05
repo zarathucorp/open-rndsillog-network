@@ -2,38 +2,63 @@ services:
   nginx:
     image: nginx:1.25.4
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      # - ./nginx/config/conf.d:/etc/nginx/conf.d
       - ./nginx/cert:/etc/nginx/cert
+      - ./nginx/common:/etc/nginx/common
+      - ${NGINX_CONF_FILE}:/etc/nginx/conf.d/default.conf:ro
+      - rndsillog:/shared
     container_name: rndsillog_nginx
     platform: "linux/amd64"
     ports:
       - "80:80"
       - "443:443"
     depends_on:
+      - frontend
       - backend
+      - githubworker
     networks:
       - front
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
+    env_file:
+      - .env
 
   backend:
     build:
       context: ../indulgentia-back/.
-    container_name: rndsillog_backend
+    container_name: back
     volumes:
-      - ../indulgentia-back:/app
+      - rndsillog:/shared
+    restart: unless-stopped
     networks:
       - front
 
-  # frontend:
-  #   build:
-  #     context: ../openstat-cloud-front/.
+  frontend:
+    build:
+      context: ../indulgentia-front/.
+    volumes:
+      - rndsillog:/shared
+    container_name: front
+    restart: unless-stopped
+    networks: 
+      - front
+
+  githubworker:
+    build:
+      context: ../indulgentia-github/.
+    volumes:
+      - rndsillog:/shared
+    container_name: github
+    restart: unless-stopped
+    networks: 
+      - front
 
 networks:
   front:
     external: true
 
 volumes:
-  rndsillog-front:
+  rndsillog:
     external: true
