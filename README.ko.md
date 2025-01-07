@@ -2,23 +2,23 @@
 
 ## What is Open Rndsillog?
 
-Open Rndsillog is an open-source based free electronic research notebook project. It was created with the purpose of making essential conditions for establishing electronic research notebooks and simple functions accessible to everyone. The following are the features you can get by using Open Rndsillog:
+Open Rndsillog(오픈 연구실록)은 오픈소스 기반의 무료 전자연구노트 프로젝트입니다. 전자연구노트 성립을 위한 필수조건 및 간편한 기능을 누구나 이용할 수 있게 하기 위한 목적을 가지고 제작하였습니다. 다음은 오픈 연구실록을 활용하면 얻을 수 있는 기능입니다.
 
-- Personal workspace function for each researcher
-- Record date, recorder, and tamper verification using Azure cloud and PDF certificates
-- Automatic PDF file conversion and storage tailored to research notes
-- Automatic saving of GitHub development history
+- 연구자 개인별 작업 공간 기능
+- Azure 클라우드와 PDF 인증서를 활용한 기록 날짜, 기록자, 위변조 확인 기능
+- 연구노트맞춤 자동 PDF 파일 변환 및 저장
+- GitHub 개발 내역 자동 저장
 
-> **info** For more details, please refer to the [Research Notebook User Guide](https://zarathu.gitbook.io/rndsillog-docs).
+> **info** 자세한 내용은 [연구실록 사용자가이드](https://zarathu.gitbook.io/rndsillog-docs)에서 확인할 수 있습니다.
 
-## Open Rndsillog Components
+## 오픈 연구실록 구성
 
-- [open-rndsillog-network](https://github.com/zarathucorp/open-rndsillog-network): Research Notebook Function Orchestration
-- [open-rndsillog-web](https://github.com/zarathucorp/open-rndsillog-web): Research Notebook Web
-- [open-rndsillog-server](https://github.com/zarathucorp/open-rndsillog-server): Research Notebook Server
-- [open-rndsillog-githubapp](https://github.com/zarathucorp/open-rndsillog-githubapp): Research Notebook GitHub App
+- [open-rndsillog-network](https://github.com/zarathucorp/open-rndsillog-network): 연구실록 기능 오케스트레이션
+- [open-rndsillog-web](https://github.com/zarathucorp/open-rndsillog-web): 연구실록 웹
+- [open-rndsillog-server](https://github.com/zarathucorp/open-rndsillog-server): 연구실록 서버
+- [open-rndsillog-githubapp](https://github.com/zarathucorp/open-rndsillog-githubapp): 연구실록 GitHub App
 
-## Open Rndsillog Tech Stack
+## 오픈 연구실록 기술스택
 
 - open-rndsillog-network
   - [Docker](https://www.docker.com/)
@@ -34,20 +34,20 @@ Open Rndsillog is an open-source based free electronic research notebook project
 - open-rndsillog-githubapp
   - [Probot](https://probot.github.io/)
 
-## Prerequisites
+## 사전작업
 
 ### Supabase
 
-Supabase is an open-source backend service platform (BaaS) based on PostgreSQL. It allows easy and secure use of databases and researcher accounts.
+Supabase는 PostgreSQL 기반의 오픈소스 백엔드 서비스 제공 플랫폼(BaaS)입니다. 데이터베이스와 연구자 계정을 간편하고 안전하게 이용할 수 있습니다.
 
 #### Table
 
-Applying the following SQL script through the Supabase SQL Editor will create the necessary Tables, Triggers, and Functions.
+아래 SQL 스크립트를 Supabase SQL Editor를 통해 적용하면 필요한 Table, Trigger 와 Function을 생성할 수 있습니다.
 
-Basic table creation SQL script
+기본 테이블 생성 SQL 스크립트
 
 ```SQL
--- Create bucket table
+-- bucket 테이블 생성
 CREATE TABLE public.bucket (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE public.bucket (
 );
 ALTER POLICY "Policy for service_role" ON public.bucket TO service_role USING (true);
 
--- Create gitrepo table
+-- gitrepo 테이블 생성
 CREATE TABLE public.gitrepo (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE public.gitrepo (
 );
 ALTER POLICY "Policy for service_role" ON public.gitrepo TO service_role USING (true);
 
--- Create note table
+-- note 테이블 생성
 CREATE TABLE public.note (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE public.note (
 );
 ALTER POLICY "Policy for service_role" ON public.note TO service_role USING (true);
 
--- Create order table
+-- order 테이블 생성
 CREATE TABLE public.order (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE public.order (
 );
 ALTER POLICY "Policy for service_role" ON public.order TO service_role USING (true);
 
--- Create project table
+-- project 테이블 생성
 CREATE TABLE public.project (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE public.project (
 );
 ALTER POLICY "Policy for service_role" ON public.project TO service_role USING (true);
 
--- Create subscription table
+-- subscription 테이블 생성
 CREATE TABLE public.subscription (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE public.subscription (
 );
 ALTER POLICY "Policy for service_role" ON public.subscription TO service_role USING (true);
 
--- Create team table
+-- team 테이블 생성
 CREATE TABLE public.team (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -159,7 +159,7 @@ CREATE TABLE public.team (
 );
 ALTER POLICY "Policy for service_role" ON public.team TO service_role USING (true);
 
--- Create team_invite table
+-- team_invite 테이블 생성
 CREATE TABLE public.team_invite (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE public.team_invite (
 );
 ALTER POLICY "Policy for service_role" ON public.team_invite TO service_role USING (true);
 
--- Create user_setting table
+-- user_setting 테이블 생성
 CREATE TABLE public.user_setting (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     team_id UUID REFERENCES public.team(id) ON UPDATE CASCADE ON DELETE SET NULL,
@@ -187,28 +187,28 @@ CREATE TABLE public.user_setting (
 ALTER POLICY "Policy for service_role" ON public.user_setting TO service_role USING (true);
 ```
 
-Function & Trigger SQL script
+Function & Trigger SQL 스크립트
 
 ```SQL
--- Add update_last_note_created_at function
+-- update_last_note_created_at 함수 추가
 CREATE OR REPLACE FUNCTION public.update_last_note_created_at()
 RETURNS trigger
 LANGUAGE plpgsql
 AS $function$
 DECLARE
-    team_id_from_user UUID; -- Declare a variable to store team_id
+    team_id_from_user UUID; -- team_id를 저장할 변수를 명확히 선언
 BEGIN
-    -- Update user_setting table
+    -- user_setting 테이블 업데이트
     UPDATE user_setting
     SET last_note_created_at = NOW()
     WHERE id = NEW.user_id;
 
-    -- Get team_id
+    -- team_id 가져오기
     SELECT team_id INTO team_id_from_user
     FROM user_setting
     WHERE id = NEW.user_id;
 
-    -- Update team table
+    -- team 테이블 업데이트
     IF team_id_from_user IS NOT NULL THEN
         UPDATE team
         SET last_note_created_at = NOW()
@@ -219,7 +219,7 @@ BEGIN
 END;
 $function$;
 
--- Add update_team function
+-- update_team 함수 추가
 CREATE OR REPLACE FUNCTION public.update_team()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -241,7 +241,7 @@ BEGIN
 END;
 $function$;
 
--- Add update_team_invite function
+-- update_team_invite 함수 추가
 CREATE OR REPLACE FUNCTION public.update_team_invite()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -260,7 +260,7 @@ BEGIN
 END;
 $function$;
 
--- Add update_project function
+-- update_project 함수 추가
 CREATE OR REPLACE FUNCTION public.update_project()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -279,7 +279,7 @@ BEGIN
 END;
 $function$;
 
--- Add get_team_info function
+-- get_team_info 함수 추가
 CREATE OR REPLACE FUNCTION public.get_team_info(u_team_id uuid)
 RETURNS TABLE(id uuid, created_at timestamp with time zone, updated_at timestamp with time zone, is_deleted boolean, team_leader_id uuid, team_leader_first_name character varying, team_leader_last_name character varying, team_name character varying, project_num bigint, bucket_num bigint, note_num bigint, linked_repo_num bigint)
 LANGUAGE plpgsql
@@ -316,7 +316,7 @@ BEGIN
 END;
 $function$;
 
--- Add get_user_settings_with_auth_info function
+-- get_user_settings_with_auth_info 함수 추가
 CREATE OR REPLACE FUNCTION public.get_user_settings_with_auth_info()
 RETURNS TABLE(id uuid, team_id uuid, has_signature boolean, is_admin boolean, first_name character varying, last_name character varying, email character varying, github_token text, is_deleted boolean, last_note_created_at timestamp with time zone, last_sign_in_at timestamp with time zone, created_at timestamp with time zone)
 LANGUAGE plpgsql
@@ -349,7 +349,7 @@ BEGIN
 END;
 $function$;
 
--- Add verify_note function
+-- verify_note 함수 추가
 CREATE OR REPLACE FUNCTION public.verify_note(p_user_id uuid, p_note_id uuid)
 RETURNS boolean
 LANGUAGE plpgsql
@@ -374,7 +374,7 @@ BEGIN
 END;
 $function$;
 
--- Add read_note_list_with_user_setting function
+-- read_note_list_with_user_setting 함수 추가
 CREATE OR REPLACE FUNCTION public.read_note_list_with_user_setting(b_id uuid)
 RETURNS TABLE(id uuid, created_at timestamp with time zone, updated_at timestamp with time zone, user_id uuid, bucket_id uuid, title character varying, timestamp_transaction_id character varying, file_name character varying, is_github boolean, github_type character varying, github_hash character varying, github_link character varying, is_deleted boolean, pdf_hash character varying, user_setting jsonb)
 LANGUAGE plpgsql
@@ -420,7 +420,7 @@ BEGIN
 END;
 $function$;
 
--- Add get_note_details function
+-- get_note_details 함수 추가
 CREATE OR REPLACE FUNCTION public.get_note_details(p_note_id uuid)
 RETURNS TABLE(note_id uuid, created_at timestamp with time zone, updated_at timestamp with time zone, user_id uuid, bucket_id uuid, note_title character varying, file_name character varying, is_github boolean, github_type character varying, github_hash character varying, github_link character varying, timestamp_transaction_id character varying, first_name character varying, last_name character varying, bucket_title character varying, project_title character varying)
 LANGUAGE plpgsql
@@ -458,7 +458,7 @@ BEGIN
 END;
 $function$;
 
--- Add check_gitrepo_exists function
+-- check_gitrepo_exists 함수 추가
 CREATE OR REPLACE FUNCTION public.check_gitrepo_exists(g_bucket_id uuid, g_repo_url character varying)
 RETURNS boolean
 LANGUAGE plpgsql
@@ -477,7 +477,7 @@ BEGIN
 END;
 $function$;
 
--- Add get_bucket_info function
+-- get_bucket_info 함수 추가
 CREATE OR REPLACE FUNCTION public.get_bucket_info(b_project_id uuid)
 RETURNS TABLE(id uuid, created_at timestamp with time zone, updated_at timestamp with time zone, project_id uuid, manager_id uuid, title character varying, is_deleted boolean, manager_first_name character varying, manager_last_name character varying, gitrepos json, note_num bigint)
 LANGUAGE plpgsql
@@ -502,8 +502,7 @@ BEGIN
         (
             SELECT count(*)::BIGINT  -- Change this line
             FROM public.note n
-            WHERE n.bucket_id = b.id
-            AND n.is_deleted = false
+            WHERE n.bucket_id = b.id AND n.is_deleted = false
         ) AS note_num
     FROM public.bucket b
     JOIN public.user_setting us ON b.manager_id = us.id
@@ -511,7 +510,7 @@ BEGIN
 END;
 $function$;
 
--- Add get_bucket_info_list function
+-- get_bucket_info_list 함수 추가
 CREATE OR REPLACE FUNCTION public.get_bucket_info_list(b_project_id uuid)
 RETURNS TABLE(id uuid, created_at timestamp with time zone, updated_at timestamp with time zone, project_id uuid, manager_id uuid, title character varying, is_deleted boolean, manager_first_name character varying, manager_last_name character varying, gitrepos json, note_num bigint)
 LANGUAGE plpgsql
@@ -536,8 +535,7 @@ BEGIN
         (
             SELECT count(*)::BIGINT  -- Change this line
             FROM public.note n
-            WHERE n.bucket_id = b.id
-            AND n.is_deleted = false
+            WHERE n.bucket_id = b.id AND n.is_deleted = false
         ) AS note_num
     FROM public.bucket b
     JOIN public.user_setting us ON b.manager_id = us.id
@@ -545,7 +543,7 @@ BEGIN
 END;
 $function$;
 
--- Add get_team_invite_and_team_and_user_setting function
+-- get_team_invite_and_team_and_user_setting 함수 추가
 CREATE OR REPLACE FUNCTION public.get_team_invite_and_team_and_user_setting(user_id uuid)
 RETURNS TABLE(id uuid, created_at timestamp with time zone, team_id uuid, invited_user_id uuid, is_accepted boolean, updated_at timestamp with time zone, team_name character varying, team_leader jsonb)
 LANGUAGE plpgsql
@@ -576,7 +574,7 @@ BEGIN
 END;
 $function$;
 
--- Add get_team_invite_send_and_team_and_user_setting function
+-- get_team_invite_send_and_team_and_user_setting 함수 추가
 CREATE OR REPLACE FUNCTION public.get_team_invite_send_and_team_and_user_setting(sent_team_id uuid)
 RETURNS TABLE(id uuid, created_at timestamp with time zone, team_id uuid, invited_user_id uuid, is_accepted boolean, updated_at timestamp with time zone, team_name character varying, invited_user jsonb)
 LANGUAGE plpgsql
@@ -607,14 +605,15 @@ BEGIN
 END;
 $function$;
 
--- Add update_user_setting_on_user_delete function
+-- update_user_setting_on_user_delete 함수 추가
 CREATE OR REPLACE FUNCTION public.update_user_setting_on_user_delete()
 RETURNS trigger
 LANGUAGE plpgsql
 SECURITY DEFINER
 AS $function$
 BEGIN
-  -- When a row is deleted from auth.users table, find the corresponding row in public.user_setting and set is_deleted to true.
+  -- auth.users 테이블에서 row가 삭제될 때, 해당 row의 id와 일치하는 public.user_setting의 row를 찾아
+  -- is_deleted를 true로 설정합니다.
   UPDATE public.user_setting
   SET is_deleted = TRUE
   WHERE id = OLD.id;
@@ -622,14 +621,15 @@ BEGIN
 END;
 $function$;
 
--- Add fn_soft_delete_user_setting function
+-- fn_soft_delete_user_setting 함수 추가
 CREATE OR REPLACE FUNCTION public.fn_soft_delete_user_setting()
 RETURNS trigger
 LANGUAGE plpgsql
 SECURITY DEFINER
 AS $function$
 BEGIN
-  -- When a row in auth.users table is updated and deleted_at is set to a non-null value, find the corresponding row in public.user_setting and set is_deleted to true.
+  -- auth.users 테이블의 row가 업데이트 되어 deleted_at이 null이 아니게 설정될 때,
+  -- 해당 row의 id와 일치하는 public.user_setting의 row를 찾아 is_deleted를 true로 설정합니다.
   IF NEW.deleted_at IS NOT NULL THEN
     UPDATE public.user_setting
     SET is_deleted = TRUE
@@ -639,29 +639,29 @@ BEGIN
 END;
 $function$;
 
--- Add get_team_user_count function
+-- get_team_user_count 함수 추가
 CREATE OR REPLACE FUNCTION public.get_team_user_count(u_team_id uuid)
 RETURNS integer
 LANGUAGE plpgsql
 AS $function$
 DECLARE
-    -- Declare a variable
+    -- 변수 선언
     total_count INTEGER;
 BEGIN
-    -- Find the number of rows in user_setting that match the condition
+    -- user_setting에서 조건에 맞는 행의 수를 찾음
     SELECT COUNT(*) INTO total_count FROM public.user_setting
     WHERE team_id = u_team_id AND is_deleted = FALSE;
 
-    -- Find the number of rows in team_invite that match the condition and add to the existing count
+    -- team_invite에서 조건에 맞는 행의 수를 찾아서 기존 수에 더함
     SELECT total_count + COUNT(*) INTO total_count FROM public.team_invite
     WHERE team_id = u_team_id AND is_accepted IS NULL AND is_deleted = FALSE;
 
-    -- Return the final calculated total count
+    -- 최종 계산된 총 수를 반환
     RETURN total_count;
 END;
 $function$;
 
--- Add verify_bucket function
+-- verify_bucket 함수 추가
 CREATE OR REPLACE FUNCTION public.verify_bucket(user_id uuid, bucket_id uuid)
 RETURNS boolean
 LANGUAGE plpgsql
@@ -685,7 +685,7 @@ BEGIN
 END;
 $function$;
 
--- Add verify_project function
+-- verify_project 함수 추가
 CREATE OR REPLACE FUNCTION public.verify_project(user_id uuid, project_id uuid)
 RETURNS boolean
 LANGUAGE plpgsql
@@ -708,7 +708,7 @@ BEGIN
 END;
 $function$;
 
--- Add note_breadcrumb_data function
+-- note_breadcrumb_data 함수 추가
 CREATE OR REPLACE FUNCTION public.note_breadcrumb_data(note_id uuid)
 RETURNS TABLE(note_title character varying, project_id uuid, project_title character varying, bucket_id uuid, bucket_title character varying)
 LANGUAGE plpgsql
@@ -732,7 +732,7 @@ BEGIN
 END;
 $function$;
 
--- Add bucket_breadcrumb_data function
+-- bucket_breadcrumb_data 함수 추가
 CREATE OR REPLACE FUNCTION public.bucket_breadcrumb_data(bucket_id uuid)
 RETURNS TABLE(project_id uuid, project_title character varying, bucket_title character varying)
 LANGUAGE plpgsql
@@ -752,7 +752,7 @@ BEGIN
 END;
 $function$;
 
--- Add update_bucket function
+-- update_bucket 함수 추가
 CREATE OR REPLACE FUNCTION public.update_bucket()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -771,7 +771,7 @@ BEGIN
 END;
 $function$;
 
--- Add update_note function
+-- update_note 함수 추가
 CREATE OR REPLACE FUNCTION public.update_note()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -790,7 +790,7 @@ BEGIN
 END;
 $function$;
 
--- Add handle_new_user function
+-- handle_new_user 함수 추가
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -881,14 +881,14 @@ using (
 
 Provider
 
-open-rndsillog is set up with email and Google by default. You can add more Auth Providers through Supabase settings and open-rndsillog script modifications. This can be configured in Supabase Authentication > CONFIGURATION > Providers.
+open-rndsillog은 이메일과 구글을 기본으로 설정되어 있습니다. supabase 설정과 open-rndsillog 스크립트 수정을 통해 더 많은 Auth Providers를 추가할 수 있습니다. Supabase Authentication > CONFIGURATION > Providers 에서 설정할 수 있습니다.
 
 Email
 
-SMTP settings must be configured to use researcher accounts properly. This can be configured in Supabase Setting > Authentication > SMTP Provider Settings.
+SMTP 설정을 해야 연구자 계정을 정상적으로 이용할 수 있습니다.
+Supabase Setting > Authentication > SMTP Provider Settings를 통해 설정할 수 있습니다.
 
-#### Supabase Environment Variables
-
+#### Supabase 환경변수
 - SUPABASE_URL
 - SUPABASE_KEY (ANON)
 - SUPABASE_KEY (SERVICE)
@@ -897,8 +897,8 @@ SMTP settings must be configured to use researcher accounts properly. This can b
 
 #### Azure blob storage
 
-Create [Azure blob storage](https://azure.microsoft.com/ko-kr/products/storage/blobs) and then create a container to use. Then prepare the [AZURE_STORAGE_CONNECTION_STRING](https://learn.microsoft.com/ko-kr/azure/developer/python/sdk/examples/azure-sdk-example-storage-use?tabs=connection-string%2Ccmd) for open-rndsillog to access.
-Finally, the following items will be used as environment variables.
+[Azure blob storage](https://azure.microsoft.com/ko-kr/products/storage/blobs) 생성 후 사용할 컨테이너를 만듭니다. 이후 open-rndsillog이 접근하기 위해 [AZURE_STORAGE_CONNECTION_STRING](https://learn.microsoft.com/ko-kr/azure/developer/python/sdk/examples/azure-sdk-example-storage-use?tabs=connection-string%2Ccmd)을 준비합니다.
+최종적으로 다음 항목들이 환경변수에 활용됩니다.
 
 - AZURE_RESOURCE_GROUP
 - AZURE_STORAGE_CONNECTION_STRING
@@ -906,7 +906,7 @@ Finally, the following items will be used as environment variables.
 
 #### Azure confidential ledger
 
-Create [Azure confidential ledger](https://azure.microsoft.com/ko-kr/products/azure-confidential-ledger) and then register the application for open-rndsillog to access by following [Azure application registration](https://learn.microsoft.com/ko-kr/azure/confidential-ledger/register-application). Once the application registration is complete, the following items will be used as environment variables.
+[Azure confidential ledger](https://azure.microsoft.com/ko-kr/products/azure-confidential-ledger) 생성 후 open-rndsillog이 접근하기 위해 [Azure 애플리케이션 등록](https://learn.microsoft.com/ko-kr/azure/confidential-ledger/register-application)을 진행합니다. 해당 애플리케이션 등록이 완료되면 다음 항목들이 환경변수에 활용됩니다.
 
 - AZURE_CLIENT_ID
 - AZURE_TENANT_ID
@@ -914,12 +914,12 @@ Create [Azure confidential ledger](https://azure.microsoft.com/ko-kr/products/az
 
 ## How to setup
 
-1. Clone each repo to the same path using git clone. At this time, set the environment variables (.env) according to the description in each repo.
-2. Install docker and docker compose.
-3. Move to the open-rndsillog-network directory and run it using the docker-compose.yml script.
-4. Configure the DNS settings of the server to allow external access.
+1. 각각의 repo를 같은 경로에 git clone을 통해 불러옵니다. 이때 환경변수(.env)을 각 repo에 있는 설명에 따라 설정해줍니다.
+2. docker 및 docker compose 설치를 진행합니다.
+3. open-rndsillog-network 디렉토리로 이동 후 docker-compose.yml 스크립트를 이용해 실행합니다.
+4. 해당 서버의 DNS 설정을 진행하면 외부에서도 접속할 수 있습니다.
 
-Example
+진행 예시
 
 ```bash
 git clone https://github.com/zarathucorp/open-rndsillog-network.git
