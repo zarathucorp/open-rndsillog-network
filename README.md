@@ -14,24 +14,24 @@ Open Rndsillog is an open-source based free electronic research notebook project
 ## Open Rndsillog Components
 
 - [open-rndsillog-network](https://github.com/zarathucorp/open-rndsillog-network): Research Notebook Function Orchestration
-- [open-rndsillog-web](https://github.com/zarathucorp/open-rndsillog-web): Research Notebook Web
-- [open-rndsillog-server](https://github.com/zarathucorp/open-rndsillog-server): Research Notebook Server
-- [open-rndsillog-githubapp](https://github.com/zarathucorp/open-rndsillog-githubapp): Research Notebook GitHub App
+- [indulgentia-front](https://github.com/zarathucorp/indulgentia-front): Research Notebook Web
+- [indulgentia-back](https://github.com/zarathucorp/indulgentia-back): Research Notebook Server
+- [indulgentia-github](https://github.com/zarathucorp/indulgentia-github): Research Notebook GitHub App
 
 ## Open Rndsillog Tech Stack
 
 - open-rndsillog-network
   - [Docker](https://www.docker.com/)
   - [Nginx](https://www.nginx.com/)
-- open-rndsillog-web
+- indulgentia-front
   - [NextJS](https://nextjs.org/)
   - [ShadCN](https://ui.shadcn.com/)
-- open-rndsillog-server
+- indulgentia-back
   - [FastAPI](https://fastapi.tiangolo.com/)
   - [Supabase](https://supabase.com/)
   - [Azure](https://azure.microsoft.com/)
   - [Libreoffice](https://www.libreoffice.org/) ([H2Orestart](https://github.com/ebandal/H2Orestart))
-- open-rndsillog-githubapp
+- indulgentia-github
   - [Probot](https://probot.github.io/)
 
 ## Prerequisites
@@ -923,9 +923,9 @@ Example
 
 ```bash
 git clone https://github.com/zarathucorp/open-rndsillog-network.git
-git clone https://github.com/zarathucorp/open-rndsillog-web.git
-git clone https://github.com/zarathucorp/open-rndsillog-server.git
-git clone https://github.com/zarathucorp/open-rndsillog-githubapp.git
+git clone https://github.com/zarathucorp/indulgentia-front.git
+git clone https://github.com/zarathucorp/indulgentia-back.git
+git clone https://github.com/zarathucorp/indulgentia-github.git
 
 cd open-rndsillog-network
 docker compose up -d

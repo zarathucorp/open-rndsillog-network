@@ -14,24 +14,24 @@ Open Rndsillog(오픈 연구실록)은 오픈소스 기반의 무료 전자연�
 ## 오픈 연구실록 구성
 
 - [open-rndsillog-network](https://github.com/zarathucorp/open-rndsillog-network): 연구실록 기능 오케스트레이션
-- [open-rndsillog-web](https://github.com/zarathucorp/open-rndsillog-web): 연구실록 웹
-- [open-rndsillog-server](https://github.com/zarathucorp/open-rndsillog-server): 연구실록 서버
-- [open-rndsillog-githubapp](https://github.com/zarathucorp/open-rndsillog-githubapp): 연구실록 GitHub App
+- [indulgentia-front](https://github.com/zarathucorp/indulgentia-front): 연구실록 웹
+- [indulgentia-back](https://github.com/zarathucorp/indulgentia-back): 연구실록 서버
+- [indulgentia-github](https://github.com/zarathucorp/indulgentia-github): 연구실록 GitHub App
 
 ## 오픈 연구실록 기술스택
 
 - open-rndsillog-network
   - [Docker](https://www.docker.com/)
   - [Nginx](https://www.nginx.com/)
-- open-rndsillog-web
+- indulgentia-front
   - [NextJS](https://nextjs.org/)
   - [ShadCN](https://ui.shadcn.com/)
-- open-rndsillog-server
+- indulgentia-back
   - [FastAPI](https://fastapi.tiangolo.com/)
   - [Supabase](https://supabase.com/)
   - [Azure](https://azure.microsoft.com/)
   - [Libreoffice](https://www.libreoffice.org/) ([H2Orestart](https://github.com/ebandal/H2Orestart))
-- open-rndsillog-githubapp
+- indulgentia-github
   - [Probot](https://probot.github.io/)
 
 ## 사전작업
@@ -923,9 +923,9 @@ Supabase Setting > Authentication > SMTP Provider Settings를 통해 설정할 �
 
 ```bash
 git clone https://github.com/zarathucorp/open-rndsillog-network.git
-git clone https://github.com/zarathucorp/open-rndsillog-web.git
-git clone https://github.com/zarathucorp/open-rndsillog-server.git
-git clone https://github.com/zarathucorp/open-rndsillog-githubapp.git
+git clone https://github.com/zarathucorp/indulgentia-front.git
+git clone https://github.com/zarathucorp/indulgentia-back.git
+git clone https://github.com/zarathucorp/indulgentia-github.git
 
 cd open-rndsillog-network
 docker compose up -d

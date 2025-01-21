@@ -27,7 +27,7 @@ services:
 
   backend:
     build:
-      context: ../open-rndsillog-server/.
+      context: ../indulgentia-back/.
     container_name: back
     volumes:
       - rndsillog:/shared
@@ -37,7 +37,7 @@ services:
 
   frontend:
     build:
-      context: ../open-rndsillog-web/.
+      context: ../indulgentia-front/.
     volumes:
       - rndsillog:/shared
     container_name: front
@@ -47,7 +47,7 @@ services:
 
   githubworker:
     build:
-      context: ../open-rndsillog-githubapp/.
+      context: ../indulgentia-github/.
     volumes:
       - rndsillog:/shared
     container_name: github
