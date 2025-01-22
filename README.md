@@ -16,7 +16,7 @@ Open Rndsillog is an open-source based free electronic research notebook project
 - [open-rndsillog-network](https://github.com/zarathucorp/open-rndsillog-network): Research Notebook Function Orchestration
 - [indulgentia-front](https://github.com/zarathucorp/indulgentia-front): Research Notebook Web
 - [indulgentia-back](https://github.com/zarathucorp/indulgentia-back): Research Notebook Server
-- [indulgentia-github](https://github.com/zarathucorp/indulgentia-github): Research Notebook GitHub App
+- [open-rndsillog-githubapp](https://github.com/zarathucorp/open-rndsillog-githubapp): Research Notebook GitHub App
 
 ## Open Rndsillog Tech Stack
 
@@ -31,7 +31,7 @@ Open Rndsillog is an open-source based free electronic research notebook project
   - [Supabase](https://supabase.com/)
   - [Azure](https://azure.microsoft.com/)
   - [Libreoffice](https://www.libreoffice.org/) ([H2Orestart](https://github.com/ebandal/H2Orestart))
-- indulgentia-github
+- open-rndsillog-githubapp
   - [Probot](https://probot.github.io/)
 
 ## Prerequisites
@@ -925,7 +925,7 @@ Example
 git clone https://github.com/zarathucorp/open-rndsillog-network.git
 git clone https://github.com/zarathucorp/indulgentia-front.git
 git clone https://github.com/zarathucorp/indulgentia-back.git
-git clone https://github.com/zarathucorp/indulgentia-github.git
+git clone https://github.com/zarathucorp/open-rndsillog-githubapp.git
 
 cd open-rndsillog-network
 docker compose up -d
